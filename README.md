@@ -56,12 +56,6 @@ The app will run at `http://localhost:5173/`.
 
 ---
 
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
 ## 🙌 Acknowledgments
 
 - Pokémon data powered by [PokéAPI](https://pokeapi.co/)
