@@ -57,7 +57,7 @@ The app will run at `http://localhost:3000`.
 _Add screenshots here if needed using:_
 
 ```markdown
-![Screenshot](./screenshots/main-screen.png)
+![Screenshot](./screenshots/main-screen.jpg)
 ```
 
 ---
