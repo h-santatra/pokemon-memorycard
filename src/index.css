@@ -1,0 +1,54 @@
+@import 'tailwindcss';
+@plugin "daisyui";
+/* HTML: <div class="loader"></div> */
+/*.loader {
+  width: 100px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 12px solid;
+  border-color: #000 #0000;
+  animation: l1 1s infinite;
+}
+@keyframes l1 {to{transform: rotate(.5turn)}}*/
+
+.u-bounce {
+  animation: bounce 1000ms infinite;
+}
+
+.o-pokeball {
+  width: 70px;
+  height: 70px;
+  border-radius: 70px;
+  border: solid 3px black;
+  position: relative;
+  background: linear-gradient(to bottom, #eeeeee 0%, #ffffff 100%);
+  margin: 10px auto;
+}
+
+.o-pokeball:before,
+.o-pokeball:after {
+  content: '';
+  display: block;
+}
+
+.o-pokeball:before {
+  width: 65px;
+  height: 35px;
+  border-bottom: solid 4px black;
+  border-radius: 35px 35px 0 0;
+  background: linear-gradient(to bottom, #d10000 0%, #ff0000 50%);
+}
+
+.o-pokeball:after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(to bottom, #fff 0%, #ccc 100%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px black, 0 0 0 2px #ddd, 0 0 0 3.57143px black,
+    0 0 5px 2.94118px rgba(0, 0, 0, 0.4);
+}
