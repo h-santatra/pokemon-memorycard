@@ -4,6 +4,10 @@ Welcome to the **Pokémon Memory Card Game**! This is a fun and interactive web-
 
 🔗 **Live Site:** [pokemon-memorycard.vercel.app](https://pokemon-memorycard.vercel.app/)
 
+## 📸 Screenshots
+
+![Screenshot](./screenshots/main-screen.jpg)
+
 ---
 
 ## 🎮 Features
@@ -49,14 +53,6 @@ npm run dev
 ```
 
 The app will run at `http://localhost:5173/`.
-
----
-
-## 📸 Screenshots
-
-_Add screenshots here if needed using:_
-
-![Screenshot](./screenshots/main-screen.jpg)
 
 ---
 
