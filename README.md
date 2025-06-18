@@ -1,12 +1,78 @@
-# React + Vite
+# 🧠 Pokémon Memory Card Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **Pokémon Memory Card Game**! This is a fun and interactive web-based memory game where your goal is to match all the Pokémon cards without repeating a selection.
 
-Currently, two official plugins are available:
+🔗 **Live Site:** [pokemon-memorycard.vercel.app](https://pokemon-memorycard.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🎮 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🧩 Simple memory game mechanics
+- 🎴 Random Pokémon card generation
+- 💥 Score tracking system
+- 🔄 Game reset functionality
+- ⚡ Fast and responsive interface
+- 📱 Mobile-friendly design
+
+---
+
+## 🛠️ Technologies Used
+
+- **React**
+- **JavaScript**
+- **HTML & CSS**
+- **PokéAPI** for dynamic Pokémon data
+- **Vercel** for deployment
+
+---
+
+## 🚀 Getting Started (for developers)
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/h-santatra/pokemon-memorycard.git
+cd pokemon-memorycard
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Start the development server
+
+```bash
+npm start
+```
+
+The app will run at `http://localhost:3000`.
+
+---
+
+## 📸 Screenshots
+
+_Add screenshots here if needed using:_
+
+```markdown
+![Screenshot](./screenshots/main-screen.png)
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 🙌 Acknowledgments
+
+- Pokémon data powered by [PokéAPI](https://pokeapi.co/)
+- Inspired by classic memory card games
+
+---
+
+Enjoy catching and matching them all! 🎉
