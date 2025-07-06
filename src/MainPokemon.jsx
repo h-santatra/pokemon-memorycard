@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import PokemonCards from './PokemonCards.jsx';
+import { useState, useEffect } from "react";
+import PokemonCards from "./PokemonCards.jsx";
+import Switch from "./Switch.jsx";
 
 export default function MainPokemon() {
   const TOTAL_POKEMON = 1025;
@@ -21,6 +22,36 @@ export default function MainPokemon() {
   const [bestScore, setBestScore] = useState(0);
   const [reset, setReset] = useState(0);
   const [loading, setLoading] = useState(true); // Loader state
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme !== null) {
+      return Number(savedTheme);
+    }
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    return prefersDark ? 1 : 0;
+  });
+
+  useEffect(() => {
+    if (theme === 1) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const [atTop, setAtTop] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setAtTop(window.scrollY === 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   function handleScore() {
     setScore((prevScore) => prevScore + 1);
@@ -78,7 +109,7 @@ export default function MainPokemon() {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.log('Error fetching data', error);
+      console.log("Error fetching data", error);
       return null;
     }
   }
@@ -98,7 +129,7 @@ export default function MainPokemon() {
           name: pokemon.name,
           type: pokemon.types[0].type.name,
           id: pokemon.id,
-          image: pokemon.sprites.other['official-artwork'].front_default,
+          image: pokemon.sprites.other["official-artwork"].front_default,
         }));
         await Promise.all(
           filteredDetails.map((poke) => {
@@ -113,7 +144,7 @@ export default function MainPokemon() {
         setRandomSet1(shuffle(filteredDetails));
         setRandomSet2(shuffle(filteredDetails));
       } catch (error) {
-        console.log('Error fecthing  data', error);
+        console.log("Error fecthing  data", error);
       } finally {
         setLoading(false);
       }
@@ -125,49 +156,67 @@ export default function MainPokemon() {
   return (
     <>
       {loading ? (
-        <div className="h-screen w-screen flex items-center justify-center">
+        <div className="h-screen w-screen flex items-center justify-center dark:bg-gray-500">
           <div className="u-bounce c-loader o-pokeball "></div>
         </div>
       ) : (
-        <div className="bg-[url('https://images.unsplash.com/photo-1647892591711-f310c2a3ab7c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-no-repeat bg-cover">
-          <div className="sticky top-0 z-50 shadow-lg w-full px-4 py-2 bg-gray-400 opacity-95">
-            <h2 className="text-center text-4xl p-3 font-semibold underline">
-              Memory Card Game : Pokemon version
-            </h2>
-            <h4 className="hidden md:block text-xl ">
-              Get points by clicking on a pokemon image but don't click on any
-              more than once!
-            </h4>
-            <h4 className="text-xl font-semibold">
-              Catch 18 Pokemon if you can.
-            </h4>
-            <div className="flex justify-between items-center">
-              <div className="bg-orange-400  rounded px-2 my-2 font-bold">
-                <div className="">Score : {score} </div>
-                <div>Best Score : {bestScore} </div>
+        <div className="bg-[url('https://images.unsplash.com/photo-1647892591711-f310c2a3ab7c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-no-repeat bg-cover dark:text-white transition-colors duration-300">
+          <div className="dark:bg-gray-900/20 bg-zinc-100/10">
+            <div>
+              <div className="sticky top-0 z-50 w-full bg-gray-400 dark:bg-gray-800 transition-all duration-300">
+                {/* Smooth animated full header */}
+                <div
+                  className={`transition-all duration-500 overflow-hidden ${
+                    atTop ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <div className="absolute top-0 right-0 transform scale-[0.75] origin-top-left pt-2">
+                    <Switch theme={theme} setTheme={setTheme} />
+                  </div>
+                  <h2 className="text-center text-4xl p-3 font-semibold underline">
+                    Memory Card Game : Pokemon{" "}
+                    <span className="hidden md:inline">version</span>
+                  </h2>
+                  <h4 className="hidden md:block text-xl text-center">
+                    Get points by clicking on a pokemon image but don't click on
+                    any more than once!
+                  </h4>
+                  <h4 className="text-xl font-semibold text-center">
+                    Catch 18 Pokemon if you can.
+                  </h4>
+                </div>
+
+                {/* Always visible score & button */}
+                <div className="flex justify-between items-center px-4 py-2 shadow-md">
+                  <div className="bg-orange-400 dark:bg-amber-700 rounded px-2 font-bold">
+                    <div>Score : {score}</div>
+                    <div>Best Score : {bestScore}</div>
+                  </div>
+                  <button
+                    type="button"
+                    className="btn text-lg font-bold bg-teal-300 dark:bg-teal-700 dark:text-white border-none dark:shadow-white"
+                    onClick={handleReset}
+                  >
+                    New Game
+                  </button>
+                </div>
               </div>
-              <button
-                type="button"
-                className=" btn text-lg font-bold bg-accent "
-                onClick={handleReset}
-              >
-                New Game
-              </button>
-            </div>
-          </div>
-          <div className="maincard opacity-90">
-            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 p-3">
-              {arrayJoin.map((pokemon, index) => (
-                <PokemonCards
-                  key={`${pokemon.id}-${index}`}
-                  pokeName={pokemon.name}
-                  pokeType={pokemon.type}
-                  pokeId={pokemon.id}
-                  pokeImage={pokemon.image}
-                  pokemon={pokemon.name}
-                  onClick={() => handleItemClick(pokemon)}
-                />
-              ))}
+
+              <div className="maincard opacity-90">
+                <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 p-3">
+                  {arrayJoin.map((pokemon, index) => (
+                    <PokemonCards
+                      key={`${pokemon.id}-${index}`}
+                      pokeName={pokemon.name}
+                      pokeType={pokemon.type}
+                      pokeId={pokemon.id}
+                      pokeImage={pokemon.image}
+                      pokemon={pokemon.name}
+                      onClick={() => handleItemClick(pokemon)}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>

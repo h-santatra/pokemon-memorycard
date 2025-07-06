@@ -9,7 +9,7 @@ export default function PokemonCards({
   return (
     <>
       <button
-        className="card cursor-pointer border bg-gray-200 hover:shadow-lg shadow-gray-500 py-2"
+        className="card cursor-pointer border bg-gray-200 hover:shadow-lg shadow-gray-500 py-2 dark:bg-gray-500"
         onClick={() => onClick(pokemon)}
       >
         <header>
@@ -17,9 +17,9 @@ export default function PokemonCards({
             {pokeName}
           </div>
         </header>
-        <main className="flex flex-col justify-content-end">
+        <main className="flex flex-col justify-content-end dark:">
           <img src={pokeImage} alt="pokeImage" className=""></img>
-          <span className=" w-18 bg-green-300 rounded-full px-2 m-2 text-sm ">
+          <span className="w-18 bg-green-300 dark:bg-green-600 rounded-full px-2 m-2 text-sm ">
             ID : {pokeId}
           </span>
         </main>
